@@ -1,0 +1,8 @@
+{
+  "name": "Remix  Sangkhlaburi Hospital IT Maintenance System",
+  "description": "ระบบซ่อมบำรุงครุภัณฑ์คอมพิวเตอร์ โรงพยาบาลสังขละบุรี ครบวงจร แจ้งซ่อมออนไลน์ ติดตามสถานะ อนุมัติงาน บริหารทรัพย์สิน และแดชบอร์ดงบประมาณ",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
