@@ -90,6 +90,8 @@ export const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
 
   const totalPartsCost = tempParts.reduce((sum, p) => sum + (p.unitPrice * p.quantity), 0);
 
+  const statusConf = statusMap[ticket.status] || statusMap.pending;
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
       <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-3xl overflow-hidden flex flex-col max-h-[92vh]">
@@ -101,8 +103,8 @@ export const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
               {ticket.id}
             </span>
             <div>
-              <span className={`text-[11px] px-2.5 py-0.5 rounded-full font-semibold border ${statusMap[ticket.status].color}`}>
-                {statusMap[ticket.status].label}
+              <span className={`text-[11px] px-2.5 py-0.5 rounded-full font-semibold border ${statusConf.color}`}>
+                {statusConf.label}
               </span>
             </div>
           </div>
@@ -133,16 +135,16 @@ export const TicketDetailModal: React.FC<TicketDetailModalProps> = ({
               ขั้นตอนการดำเนินงาน (Work Progress Timeline)
             </p>
             <div className="grid grid-cols-4 gap-2 text-center text-[11px]">
-              <div className={`p-2 rounded-xl ${statusMap[ticket.status].step >= 1 ? 'bg-teal-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
+              <div className={`p-2 rounded-xl ${statusConf.step >= 1 ? 'bg-teal-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
                 1. แจ้งซ่อม
               </div>
-              <div className={`p-2 rounded-xl ${statusMap[ticket.status].step >= 2 ? 'bg-teal-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
+              <div className={`p-2 rounded-xl ${statusConf.step >= 2 ? 'bg-teal-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
                 2. วินิจฉัย/อะไหล่
               </div>
-              <div className={`p-2 rounded-xl ${statusMap[ticket.status].step >= 3 ? 'bg-teal-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
+              <div className={`p-2 rounded-xl ${statusConf.step >= 3 ? 'bg-teal-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
                 3. ดำเนินการซ่อม
               </div>
-              <div className={`p-2 rounded-xl ${statusMap[ticket.status].step >= 4 ? 'bg-emerald-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
+              <div className={`p-2 rounded-xl ${statusConf.step >= 4 ? 'bg-emerald-600 text-white font-semibold' : 'bg-slate-200 text-slate-500'}`}>
                 4. ส่งมอบ & ประเมิน
               </div>
             </div>
