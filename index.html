@@ -3,19 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sangkhlaburi Hospital IT Maintenance System | ระบบซ่อมบำรุงครุภัณฑ์คอมพิวเตอร์ โรงพยาบาลสังขละบุรี</title>
-    <meta name="description" content="ระบบซ่อมบำรุงครุภัณฑ์คอมพิวเตอร์ โรงพยาบาลสังขละบุรี ครบวงจร แจ้งซ่อมออนไลน์ ติดตามสถานะ อนุมัติงาน บริหารทรัพย์สิน และแดชบอร์ดงบประมาณ" />
-    <meta property="og:title" content="Sangkhlaburi Hospital IT Maintenance System" />
-    <meta property="og:description" content="ระบบซ่อมบำรุงครุภัณฑ์คอมพิวเตอร์ โรงพยาบาลสังขละบุรี ครบวงจร แจ้งซ่อมออนไลน์ ติดตามสถานะ อนุมัติงาน บริหารทรัพย์สิน และแดชบอร์ดงบประมาณ" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#0f766e" />
+    <meta name="description" content="ระบบซ่อมบำรุงครุภัณฑ์คอมพิวเตอร์ โรงพยาบาลสังขละบุรี" />
+    <title>Sangkhlaburi Hospital IT Maintenance System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      html, body { margin: 0; min-height: 100%; }
+      body { background: #f8fafc; font-family: Prompt, Sarabun, sans-serif; }
+      #root { min-height: 100vh; }
+      #boot-screen { min-height: 100vh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; }
+      .boot-card { width: min(760px, 100%); text-align: center; }
+      .spinner { width: 42px; height: 42px; margin: 0 auto 16px; border: 4px solid #ccfbf1; border-top-color: #0f766e; border-radius: 50%; animation: spin .8s linear infinite; }
+      .boot-title { font-size: 20px; font-weight: 600; color: #334155; }
+      .boot-subtitle { margin-top: 6px; font-size: 13px; color: #64748b; }
+      #boot-error { display: none; margin-top: 20px; padding: 18px; text-align: left; background: #fff; border: 1px solid #fecaca; border-radius: 14px; box-shadow: 0 10px 30px rgba(15,23,42,.08); }
+      #boot-error strong { color: #b91c1c; }
+      #boot-error pre { margin: 12px 0 0; white-space: pre-wrap; word-break: break-word; font: 13px/1.6 Consolas, monospace; color: #475569; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
   </head>
-  <body class="bg-slate-50 font-['Prompt',sans-serif] text-slate-800 antialiased selection:bg-teal-500 selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body>
+    <div id="root">
+      <div id="boot-screen">
+        <div class="boot-card">
+          <div class="spinner"></div>
+          <div class="boot-title">กำลังโหลดระบบ</div>
+          <div class="boot-subtitle">Sangkhlaburi Hospital IT Maintenance System</div>
+          <div id="boot-error">
+            <strong>ไม่สามารถเริ่มต้นระบบได้</strong>
+            <pre id="boot-error-message"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>
-
