@@ -36,21 +36,10 @@ export async function initializeSupabaseData(): Promise<SupabaseLoadResult> {
       supabase.from('system_config').select('*'),
     ]);
 
-    // If any table query failed due to RLS or missing table, fallback gracefully
-    if (usersRes.error || ticketsRes.error || assetsRes.error) {
-      console.warn('[Supabase] RLS policy or table error detected, falling back to mock data:', {
-        usersErr: usersRes.error?.message,
-        ticketsErr: ticketsRes.error?.message,
-        assetsErr: assetsRes.error?.message,
-      });
-      return {
-        users: INITIAL_USERS,
-        tickets: INITIAL_TICKETS,
-        assets: INITIAL_ASSETS,
-        spareParts: INITIAL_SPARE_PARTS,
-        lineConfig: INITIAL_LINE_CONFIG,
-        apiConfig: INITIAL_API_CONFIG,
-      };
+    // If any table query failed due to RLS or missing table, throw error to display in UI
+    if (usersRes.error || ticketsRes.error || assetsRes.error || sparePartsRes.error) {
+      const errMsg = usersRes.error?.message || ticketsRes.error?.message || assetsRes.error?.message || sparePartsRes.error?.message || 'Supabase query error';
+      throw new Error(`Supabase Error: ${errMsg}. Please check if tables exist and RLS is disabled.`);
     }
 
     const hasData = (usersRes.data && usersRes.data.length > 0) || 
